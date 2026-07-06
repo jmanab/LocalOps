@@ -1,0 +1,48 @@
+Define DOMAIN_NAME  "laragon-cpanel" 
+Define DOMAIN_DOC_ROOT "D:/LocalOpsExtender/cPanel/laragon"
+Define LOCAL_DOMAIN  "${DOMAIN_NAME}${LOCAL_TLD}" 
+
+
+#--------Universal Part----------------
+Define CERT_ROOT  "D:/LocalOpsExtender/config/certs" 
+
+
+<Directory "${DOMAIN_DOC_ROOT}">
+    Options FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+
+<VirtualHost *:80>
+
+    ServerName ${LOCAL_DOMAIN}
+    ServerAlias *.${LOCAL_DOMAIN}
+
+    DocumentRoot "${DOMAIN_DOC_ROOT}"
+
+    ErrorLog "logs/${LOCAL_DOMAIN}-error.log"
+    CustomLog "logs/${LOCAL_DOMAIN}-access.log" combined
+
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+</VirtualHost>
+
+<VirtualHost *:443>
+
+    ServerName ${LOCAL_DOMAIN}
+    ServerAlias *.${LOCAL_DOMAIN}
+
+    DocumentRoot "${DOMAIN_DOC_ROOT}"
+
+    SSLEngine On
+
+    SSLCertificateFile "${CERT_ROOT}/wildcard.dev.io.pem"
+    SSLCertificateKeyFile "${CERT_ROOT}/wildcard.dev.io-key.pem"
+
+    ErrorLog "logs/${LOCAL_DOMAIN}-error.log"
+    CustomLog "logs/${LOCAL_DOMAIN}-access.log" combined
+
+</VirtualHost>
+

@@ -1,0 +1,34 @@
+# Ignore everything by default
+*
+
+# Always track
+!.gitignore
+!README.md
+
+# Track Apache24
+!apache24/
+!apache24/**
+
+# Ignore generated vHost configs
+apache24/conf/sites-enabled/**
+
+# Keep documentation only
+!apache24/conf/sites-enabled/
+!apache24/conf/sites-enabled/site.conf.md
+
+# Ignore runtime/generated data
+apache24/data/
+apache24/php/fix/
+
+# Temp
+!temp/
+!temp/phpmyadmin/auto
+
+# Public HTML
+!public_html/
+!public_html/_index.html
+!public_html/phpinfo.php
+!public_html/test-db.php
+
+# Keep empty directories
+!.gitkeep
