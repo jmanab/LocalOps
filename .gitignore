@@ -21,9 +21,15 @@ apache24/conf/sites-enabled/**
 apache24/data/
 apache24/php/fix/
 
-# Temp
+# Keep temp/phpmyadmin directory
 !temp/
-!temp/phpmyadmin/auto
+!temp/phpmyadmin/
+
+# Ignore everything inside
+temp/phpmyadmin/**
+
+# Keep placeholder
+!temp/phpmyadmin/.gitkeep
 
 # Public HTML
 !public_html/
