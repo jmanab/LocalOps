@@ -16,6 +16,8 @@ apache24/conf/sites-enabled/**
 # Keep documentation only
 !apache24/conf/sites-enabled/
 !apache24/conf/sites-enabled/site.conf.md
+!apache24/conf/sites-enabled/localops-localhost.conf
+
 
 # Ignore runtime/generated data
 apache24/data/
