@@ -4,6 +4,7 @@
 # Always track
 !.gitignore
 !README.md
+!LICENSE
 
 # Track Apache24
 !apache24/

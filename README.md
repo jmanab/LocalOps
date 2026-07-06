@@ -1,161 +1,155 @@
-# LocalOps Installation Guide
+# LocalOps
 
-This guide assumes a fresh installation on **Windows**.
-
----
-
-## 1. Download Required Software
-
-Download the latest ZIP packages for:
-
-* **Apache HTTP Server** (2.4.x)
-* **MariaDB**
-* **PHP** (Thread Safe)
-* **phpMyAdmin**
+> A portable Apache, PHP & MariaDB development environment for Windows with multi-PHP support, virtual hosts, SSL, and phpMyAdmin.
 
 ---
 
-## 2. Extract Files
+## ✨ Features
 
-Extract everything under `C:\LocalOps`.
+- Portable installation (no installer required)
+- Apache HTTP Server 2.4
+- Multi PHP version support
+- MariaDB
+- phpMyAdmin
+- Wildcard SSL (*.dev.io)
+- Virtual Host templates
+- Easy PHP version switching
+- Modular configuration
+- Windows native
+
+---
+
+## 📦 Requirements
+
+- Windows 10/11
+- Apache HTTP Server
+- PHP (Thread Safe)
+- MariaDB
+- phpMyAdmin
+- mkcert
+
+---
+
+## 🚀 Installation
+
+### 1. Download
+
+Download:
+
+- Apache HTTP Server
+- MariaDB
+- PHP (Thread Safe)
+- phpMyAdmin
+
+### 2. Extract
 
 ```text
 C:\LocalOps
 ├── Apache24/
 ├── database/
-│   └── MariaDB/
 ├── php/
-│   ├── php-8.3.x/
-│   ├── php-8.4.x/
-│   └── php-8.5.x/
 └── phpMyAdmin/
-```
+````
 
----
-
-## 3. Clone LocalOpsExtender
-
-Clone this repository and place it anywhere (recommended: `D:\LocalOpsExtender`).
+### 3. Clone LocalOpsExtender
 
 ```text
-LocalOpsExtender/
-└── apache24/
-    ├── certs/
-    ├── conf/
-    │   ├── httpd.localops.ts.conf
-    │   ├── sites-enabled/
-    │   └── templates/
-    ├── php/
-    └── phpMyAdmin/
+D:\LocalOpsExtender
 ```
 
----
+### 4. Include LocalOps
 
-## 4. Update Configuration
+Add to:
 
-### Apache
-
-Edit:
-
-```text
+```apache
 Apache24/conf/httpd.conf
 ```
-
-Add the LocalOpsExtender include:
 
 ```apache
 Include "D:/LocalOpsExtender/apache24/conf/httpd.localops.ts.conf"
 ```
 
-### phpMyAdmin
+### 5. Generate SSL
 
-Edit:
+Follow **MKCERT.md**
 
-```text
-phpMyAdmin/config.inc.php
-```
-
-Update the LocalOps configuration paths as required.
-
----
-
-## 5. Generate SSL Certificates
-
-Generate the wildcard certificate by following **MKCERT.md**.
-
-This creates:
-
-```text
-wildcard.dev.io.pem
-wildcard.dev.io-key.pem
-```
-
----
-
-## 6. Configure Paths
-
-Update all required paths inside:
-
-* `httpd.localops.ts.conf`
-* `php.ini`
-* `config.inc.php`
-
-Ensure they match your installation directories.
-
----
-
-## 7. Validate Apache
-
-Run:
+### 6. Validate
 
 ```powershell
 & "C:\LocalOps\Apache24\bin\httpd.exe" -t
 ```
 
-Expected output:
+Expected:
 
 ```text
 Syntax OK
 ```
 
----
-
-## 8. Start Services
-
-Once Apache validates successfully, start the required services.
+### 7. Start Services
 
 * Apache
 * MariaDB
 
----
+### 8. Create Your First Site
 
-## 9. Create Your First Site
-
-Create a new vHost configuration inside:
+Create a Virtual Host inside:
 
 ```text
-apache24/conf/sites-enabled/{project}/
+apache24/conf/sites-enabled/
 ```
 
-using the provided template.
-
----
-
-## 10. Verify
-
-Open your site:
+Open:
 
 ```text
 https://mysite.dev.io
 ```
 
-If everything is configured correctly, the site should load over HTTPS without certificate warnings.
+---
+
+## 📚 Documentation
+
+* Installation Guide
+* MKCERT.md
+* httpd.localops.ts.conf.md
+* site.conf.md
+* CLI Handbook
 
 ---
 
-## Next Steps
+## 📂 Project Structure
 
-* Read **MKCERT.md** for SSL setup.
-* Read **httpd.localops.ts.conf.md** for global configuration.
-* Read **default-vhost.conf.md** for Virtual Host templates.
-* Use the **CLI Handbook** for starting, stopping, and managing LocalOps services.
+```text
+LocalOps/
+├── Apache24/
+├── database/
+├── php/
+├── phpMyAdmin/
+└── LocalOpsExtender/
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome.
+
+---
+
+## ❤️ Support LocalOps
+
+If **LocalOps** saves you time, consider supporting its development.
+
+<p align="center">
+  <a href="https://chai.technotizia.com/">
+    <img src="https://img.shields.io/badge/☕-Buy%20Me%20a%20Chai-FF6B35?style=for-the-badge&logo=buymeacoffee&logoColor=white" alt="Buy Me a Chai">
+  </a>
+</p>
+
+Your support helps fund maintenance, bug fixes, new features, and future releases.
+
+---
+
+## 📄 License
+
+Released under the MIT License.
+
